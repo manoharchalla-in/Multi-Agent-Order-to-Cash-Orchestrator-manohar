@@ -1,0 +1,25 @@
+# Environments & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# SQLite Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Python Bytecode & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & Temporary Files
+*.log
+.system_generated/
+.idea/
+.vscode/
+.DS_Store

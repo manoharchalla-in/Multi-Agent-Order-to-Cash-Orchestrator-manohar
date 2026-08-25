@@ -1,0 +1,26 @@
+# https://github.com/manoharchalla-inor
+# #manoharchalla-in
+
+from enum import Enum
+
+
+class WorkflowState(str, Enum):
+    ORDER_RECEIVED = "ORDER_RECEIVED"
+    VALIDATING = "VALIDATING"
+    INVENTORY_CHECK = "INVENTORY_CHECK"
+    PAYMENT_RISK = "PAYMENT_RISK"
+    INVOICE_GENERATION = "INVOICE_GENERATION"
+    COMPLETED = "COMPLETED"
+
+    # Exception States
+    VALIDATION_FAILED = "VALIDATION_FAILED"
+    INSUFFICIENT_INVENTORY = "INSUFFICIENT_INVENTORY"
+    PAYMENT_RISK_ESCALATION = "PAYMENT_RISK_ESCALATION"
+    HUMAN_REVIEW = "HUMAN_REVIEW"
+    REJECTED = "REJECTED"
+
+
+class RiskLevel(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
