@@ -234,8 +234,15 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Ensure DB initialized
+# Ensure DB initialized & seeded if empty
 init_db()
+try:
+    with get_connection() as conn:
+        c_count = conn.cursor().execute("SELECT COUNT(*) FROM customers").fetchone()[0]
+        if c_count == 0:
+            seed_database()
+except Exception:
+    seed_database()
 
 # Session State Initialization
 if "last_workflow_result" not in st.session_state:
@@ -564,24 +571,32 @@ with tab_create:
     cust_df = fetch_customers()
     prod_df = fetch_products()
 
+    if cust_df.empty or prod_df.empty:
+        seed_database()
+        cust_df = fetch_customers()
+        prod_df = fetch_products()
+
     with st.form("custom_order_form_glossy"):
         cust_options = {f"{row['company_name']} ({row['customer_id']}) — Credit Rating: {row['credit_rating']}": row['customer_id'] for _, row in cust_df.iterrows()}
-        selected_cust_label = st.selectbox("Select Customer Profile", list(cust_options.keys()))
-        selected_cust_id = cust_options[selected_cust_label]
+        cust_labels = list(cust_options.keys())
+        selected_cust_label = st.selectbox("Select Customer Profile", cust_labels) if cust_labels else None
+        selected_cust_id = cust_options.get(selected_cust_label, "CUST-101") if selected_cust_label else "CUST-101"
 
         col_p1, col_p2 = st.columns([3, 1])
         with col_p1:
             prod_options = {f"{row['name']} ({row['product_id']}) — ${row['unit_price']:,.2f} [Available Stock: {row['available_quantity']}]": row['product_id'] for _, row in prod_df.iterrows()}
-            selected_prod_label = st.selectbox("Select Catalog Product", list(prod_options.keys()))
-            selected_prod_id = prod_options[selected_prod_label]
+            prod_labels = list(prod_options.keys())
+            selected_prod_label = st.selectbox("Select Catalog Product", prod_labels) if prod_labels else None
+            selected_prod_id = prod_options.get(selected_prod_label, "P1001") if selected_prod_label else "P1001"
         with col_p2:
             qty = st.number_input("Order Quantity", min_value=1, max_value=500, value=2)
 
         notes = st.text_input("Order Notes", "Custom order submission via Streamlit UI")
         submit_btn = st.form_submit_button("🚀 Submit to Orchestrator Pipeline", use_container_width=True)
 
-        if submit_btn:
-            unit_price = float(prod_df[prod_df["product_id"] == selected_prod_id]["unit_price"].values[0])
+        if submit_btn and selected_cust_id and selected_prod_id:
+            matched_prod = prod_df[prod_df["product_id"] == selected_prod_id]
+            unit_price = float(matched_prod["unit_price"].values[0]) if not matched_prod.empty else 2500.00
             items = [{"product_id": selected_prod_id, "quantity": qty, "unit_price": unit_price}]
 
             orchestrator = OrderToCashOrchestrator()
