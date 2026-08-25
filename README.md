@@ -1,6 +1,3 @@
-# https://github.com/manoharchalla-inor
-# #manoharchalla-in
-
 <p align="center">
   <img src="https://img.shields.io/badge/⚡_MULTI--AGENT-ORDER--TO--CASH_ORCHESTRATOR-0F172A?style=for-the-badge&logo=workflow&logoColor=38BDF8" alt="O2C Title Banner">
 </p>
