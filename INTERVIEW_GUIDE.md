@@ -12,7 +12,7 @@
 
 1. [The 30-Second Elevator Pitch](#1-the-30-second-elevator-pitch)
 2. [The 2-Minute Architecture Overview](#2-the-2-minute-architecture-overview)
-3. [The 5-Minute Live Interactive Demo Walkthrough](#3-the-5-minute-live-interactive-demo-walkthrough)
+3. [Interactive Technical Demo Walkthrough](#3-interactive-technical-demo-walkthrough)
 4. [Deep-Dive Architecture & Core Design Tradeoff](#4-deep-dive-architecture--core-design-tradeoff)
 5. [Specialist Agent Code & Responsibilities Breakdown](#5-specialist-agent-code--responsibilities-breakdown)
 6. [Exception Path Routing & Failure Handling](#6-exception-path-routing--failure-handling)
@@ -66,7 +66,7 @@ User / Streamlit UI Dashboard
 
 ---
 
-## 3. The 5-Minute Live Interactive Demo Walkthrough
+## 3. Interactive Technical Demo Walkthrough
 
 Follow this exact sequence during a live screen-share or interview review:
 

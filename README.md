@@ -28,8 +28,7 @@
   <a href="#4-deterministic-logic-vs-llm-reasoning"><img src="https://img.shields.io/badge/⚖️_Design_Tradeoff-0F172A?style=for-the-badge" alt="Design Tradeoff"></a>
   <a href="#5-design-assumptions"><img src="https://img.shields.io/badge/📝_Design_Assumptions-0F172A?style=for-the-badge" alt="Design Assumptions"></a>
   <a href="#6-demo-scenarios-walkthrough"><img src="https://img.shields.io/badge/🚀_Demo_Scenarios-0F172A?style=for-the-badge" alt="Demo Scenarios"></a>
-  <a href="#7-5-minute-evaluator-demo-script"><img src="https://img.shields.io/badge/⏱️_Evaluator_Script-0F172A?style=for-the-badge" alt="Evaluator Script"></a>
-  <a href="#8-quickstart--installation"><img src="https://img.shields.io/badge/⚡_Quickstart-0F172A?style=for-the-badge" alt="Quickstart"></a>
+  <a href="#7-quickstart--installation"><img src="https://img.shields.io/badge/⚡_Quickstart-0F172A?style=for-the-badge" alt="Quickstart"></a>
 </p>
 
 > 📖 **Interview Readiness Guide**: For a detailed 30-second pitch, 5-minute live screen-share walkthrough, agent code breakdown, and 12 technical interviewer Q&As, read the **[`INTERVIEW_GUIDE.md`](INTERVIEW_GUIDE.md)** document.
@@ -139,17 +138,7 @@ The application includes **3 1-Click Demo Scenarios** in the Streamlit UI:
 
 ---
 
-## 7. 5-Minute Evaluator Demo Script
-
-1. **Architecture & Scope (1 min)**: Explain how the state machine orchestrator delegates to specialist agents while keeping financial/inventory logic 100% deterministic.
-2. **Scenario 1 Run (1 min)**: Click **Scenario 1: Successful Order**. View the generated **INVOICE GENERATED** card showing itemized subtotal, tax, shipping, and total. Show the dynamic green pipeline steps.
-3. **Scenario 2 Run (1 min)**: Click **Scenario 2: Inventory Shortage**. Note that the pipeline stops at Inventory with a `SHORTAGE` warning and routes to `HUMAN_REVIEW`. Highlight that **no invoice was generated**.
-4. **Scenario 3 Run (1 min)**: Click **Scenario 3: High Payment Risk**. Note that the risk score of 85.0/100 triggers `HUMAN_REVIEW`. Highlight the risk factors.
-5. **Audit Inspector & Data Explorer (1 min)**: Open **Audit Trail Inspector** tab to view the persisted `agent_logs` SQLite table with From Agent, To Agent, Step, Status, and Timestamp.
-
----
-
-## 8. Quickstart & Installation
+## 7. Quickstart & Installation
 
 ```bash
 # 1. Clone repository
