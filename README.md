@@ -16,7 +16,7 @@
   <a href="https://sqlite.org"><img src="https://img.shields.io/badge/SQLite3-Transactional-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"></a>
   <a href="https://docs.pydantic.dev"><img src="https://img.shields.io/badge/Pydantic-v2.5+-E92063?style=for-the-badge&logo=pydantic&logoColor=white" alt="Pydantic"></a>
   <a href="https://pytest.org"><img src="https://img.shields.io/badge/Pytest-9/9_Passing-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white" alt="Pytest"></a>
-  <a href="https://github.com/manoharchalla-in/Multi-Agent-Order-to-Cash-Orchestrator-manohar/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/manoharchalla-in/Multi-Agent-Order-to-Cash-Orchestrator-manohar"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"></a>
 </p>
 
 ---
@@ -78,9 +78,9 @@ ORDER_RECEIVED → VALIDATING → INVENTORY_CHECK → PAYMENT_RISK → INVOICE_G
 ```
 
 ### Exception Branch Routing
-- **Validation Failure** (`VALIDATION_FAILED` $\rightarrow$ `REJECTED`): Invalid product ID, negative quantity, or missing customer halts execution immediately.
-- **Inventory Shortage** (`INSUFFICIENT_INVENTORY` $\rightarrow$ `HUMAN_REVIEW`): Requested quantity exceeds stock; routes to human review queue without generating an invoice.
-- **High Payment Risk** (`PAYMENT_RISK_ESCALATION` $\rightarrow$ `HUMAN_REVIEW`): Payment risk score $\ge 70.0$ routes to human credit review queue without generating an invoice.
+- **Validation Failure** (`VALIDATION_FAILED` → `REJECTED`): Invalid product ID, negative quantity, or missing customer halts execution immediately.
+- **Inventory Shortage** (`INSUFFICIENT_INVENTORY` → `HUMAN_REVIEW`): Requested quantity exceeds stock; routes to human review queue without generating an invoice.
+- **High Payment Risk** (`PAYMENT_RISK_ESCALATION` → `HUMAN_REVIEW`): Payment risk score ≥ 70.0 routes to human credit review queue without generating an invoice.
 
 ---
 
@@ -115,7 +115,7 @@ ORDER_RECEIVED → VALIDATING → INVENTORY_CHECK → PAYMENT_RISK → INVOICE_G
 * **Persistence Layer**: SQLite is used as the transactional persistence layer for this MVP.
 * **Deterministic Computations**: Inventory checking, shortage calculation, invoice math, and payment risk scoring are 100% deterministic algorithms.
 * **Insufficient Inventory Routing**: Orders encountering inventory shortages are routed to Human Review (`HUMAN_REVIEW`).
-* **Payment Risk Threshold**: Payment risk scores $\ge 70.0$ are automatically routed to Human Review (`HUMAN_REVIEW`).
+* **Payment Risk Threshold**: Payment risk scores ≥ 70.0 are automatically routed to Human Review (`HUMAN_REVIEW`).
 * **Conditional Invoicing**: Invoice generation occurs **only after** required validation, inventory, and payment risk checks pass cleanly.
 * **Optional LLM Usage**: LLM usage is optional and limited to natural-language narration.
 
@@ -127,15 +127,15 @@ The application includes **3 1-Click Demo Scenarios** in the Streamlit UI:
 
 ### Scenario 1 — Successful Order
 - **Input**: Customer `CUST-101` (Apex Global Solutions, EXCELLENT credit), Product `P1001` (Industrial Server Rack, Qty: 2 = $5,000).
-- **Execution**: Validation PASS $\rightarrow$ Inventory PASS $\rightarrow$ Risk PASS (0.0/100) $\rightarrow$ Invoice `INV-XXXXXX` Generated $\rightarrow$ State: `COMPLETED`.
+- **Execution**: Validation PASS → Inventory PASS → Risk PASS (0.0/100) → Invoice `INV-XXXXXX` Generated → State: `COMPLETED`.
 
 ### Scenario 2 — Insufficient Inventory
 - **Input**: Customer `CUST-101`, Product `P1002` (Enterprise Core Switch, Qty Requested: 10, Available: 4).
-- **Execution**: Validation PASS $\rightarrow$ Inventory FAIL (Shortage: 6) $\rightarrow$ State: `HUMAN_REVIEW` $\rightarrow$ **No Invoice Generated**.
+- **Execution**: Validation PASS → Inventory FAIL (Shortage: 6) → State: `HUMAN_REVIEW` → **No Invoice Generated**.
 
 ### Scenario 3 — High Payment Risk
 - **Input**: Customer `CUST-103` (Delta Heavy Industries, POOR credit, 3 overdue payments), Product `P1001` (Qty: 5 = $12,500 total).
-- **Execution**: Validation PASS $\rightarrow$ Inventory PASS $\rightarrow$ Payment Risk HIGH (Score: 85.0/100 $\ge 70$) $\rightarrow$ State: `HUMAN_REVIEW` $\rightarrow$ **No Invoice Generated**.
+- **Execution**: Validation PASS → Inventory PASS → Payment Risk HIGH (Score: 85.0/100 ≥ 70) → State: `HUMAN_REVIEW` → **No Invoice Generated**.
 
 ---
 
@@ -199,7 +199,7 @@ tests/test_validation.py::test_invalid_product_and_negative_quantity PASSED [100
 
 ## 📄 License & Attribution
 
-Distributed under the MIT License. See `LICENSE` for details.
+Distributed under the MIT License.
 
 - **Author**: Manohar Challa
 - **GitHub**: [manoharchalla-in](https://github.com/manoharchalla-in)
