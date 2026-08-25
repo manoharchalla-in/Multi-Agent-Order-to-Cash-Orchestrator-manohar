@@ -21,6 +21,7 @@
 ## 📌 Navigation & Quick Links
 
 <p align="center">
+  <a href="INTERVIEW_GUIDE.md"><img src="https://img.shields.io/badge/🎯_INTERVIEW_DEFENSE_GUIDE-059669?style=for-the-badge&logo=readme&logoColor=white" alt="Interview Guide"></a>
   <a href="#1-problem-statement"><img src="https://img.shields.io/badge/📋_Problem_Statement-0F172A?style=for-the-badge" alt="Problem Statement"></a>
   <a href="#2-system-architecture--delegation-pattern"><img src="https://img.shields.io/badge/🏗️_Architecture-0F172A?style=for-the-badge" alt="Architecture"></a>
   <a href="#3-specialist-agent-ownership"><img src="https://img.shields.io/badge/🤖_Specialist_Agents-0F172A?style=for-the-badge" alt="Specialist Agents"></a>
@@ -30,6 +31,8 @@
   <a href="#7-5-minute-evaluator-demo-script"><img src="https://img.shields.io/badge/⏱️_Evaluator_Script-0F172A?style=for-the-badge" alt="Evaluator Script"></a>
   <a href="#8-quickstart--installation"><img src="https://img.shields.io/badge/⚡_Quickstart-0F172A?style=for-the-badge" alt="Quickstart"></a>
 </p>
+
+> 📖 **Interview Readiness Guide**: For a detailed 30-second pitch, 5-minute live screen-share walkthrough, agent code breakdown, and 12 technical interviewer Q&As, read the **[`INTERVIEW_GUIDE.md`](INTERVIEW_GUIDE.md)** document.
 
 ---
 
